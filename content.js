@@ -1,6 +1,17 @@
-//Used sendMessage() API for communicating with background page
+//get the selected word from document and send to background js
+document.addEventListener("mouseup", (event) => {
+  if (window.getSelection().toString().length) {
+    let exactText = window.getSelection().toString();
+    chrome.runtime.sendMessage({
+      selectedText: exactText,
+    });
+  }
+});
 
-var d = document.domain;
-chrome.runtime.sendMessage({
-  dom: d,
+//get the word meaning from background js
+chrome.runtime.onMessage.addListener(function (msg) {
+  if (msg.from == "background") {
+    var wordMeaning = msg.meaning;
+    alert("Meaning: " + wordMeaning);
+  }
 });
