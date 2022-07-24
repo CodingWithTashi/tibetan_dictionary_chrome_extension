@@ -1,0 +1,77 @@
+body {
+    min-width: 600px;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #ff2626;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  div {
+    font-size: 1.1rem;
+    background-color: #fff47d;
+  }
+  
+  #phonetic {
+    color: brown;
+    font-size: 1rem;
+  }
+  
+  #example {
+    font-size: 1rem;
+    background-color: #9ddac6;
+  }
+  
+  .navigate-container {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #ffffff;
+  }
+  
+  .navigator {
+    text-decoration: none;
+    display: inline-block;
+    padding: 6px 14px;
+  }
+  
+  .hidenavigator {
+    display: none;
+  }
+  
+  .navigator:hover {
+    cursor: pointer;
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .previous,
+  .next {
+    background-color: #f1f1f1;
+    color: black;
+  }
+  
+  .searchsvg {
+    width: 17px;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  .searchanchor {
+    text-decoration: none;
+    outline: none;
+  }
+  
+  .searchanchor:hover {
+    text-decoration: none;
+    outline: none;
+    border: none;
+  }
