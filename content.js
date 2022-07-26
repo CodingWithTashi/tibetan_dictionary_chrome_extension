@@ -1,6 +1,9 @@
 //get the selected word from document and send to background js
 document.addEventListener("mouseup", (event) => {
-  if (window.getSelection().toString().length) {
+  if (
+    window.getSelection().toString().length > 0 &&
+    window.getSelection().toString().split(" ").length == 1
+  ) {
     let exactText = window.getSelection().toString();
     chrome.runtime.sendMessage({
       selectedText: exactText,
