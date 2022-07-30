@@ -9,7 +9,8 @@
   "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["content.js"]
+        "js": ["content/content.js"],
+        "css":["content/content.css"]
       }
     ],
     "author": "KharagEdition",

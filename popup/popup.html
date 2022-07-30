@@ -3,9 +3,29 @@
 <html>
 
     <head>
-        <script src="popup.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="popup.js" defer></script>
     </head>
 
-    <body></body>
+    <body>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 >Tibetan Dictionary</h5>
+                <div>
+                    <label for="search_word_input">Search word</label>
+                    <input type="text" class="form-control" id="search_word_input" placeholder="Eg. Tibet">
+                    <small id="emailHelp" class="form-text text-muted">Enter some word to get meaning</small>
+                    <a href="#" class="btn btn-primary" style="margin-top:5px" id="search_word_input_btn">Search</a>
+                  </div>
+                  <hr class="solid">
+
+             <div id="defination_div" style="display:none">
+                <h6 style="margin-top:5px" id="dictionary_word_title"></h6>
+                <p class="card-text" id="dictionary_word_defination"></p>
+             </div>
+              
+            </div>
+          </div>
+    </body>
 
 </html>

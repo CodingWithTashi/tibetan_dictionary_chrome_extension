@@ -6,5 +6,36 @@ var port = chrome.runtime.connect({
 port.postMessage("Request Modified Value");
 
 port.onMessage.addListener(function (msg) {
-  console.log("Modified Value recieved is  " + msg);
+  console.log("Modified Value recieve" + JSON.stringify(msg));
+  if (msg != null && msg.method != undefined) {
+    switch (msg.method) {
+      case "wordMeaning":
+        document.getElementById("dictionary_word_title").innerHTML =
+          msg.data.english;
+        document.getElementById("dictionary_word_defination").innerHTML =
+          msg.data.defination;
+        document.getElementById("defination_div").style.display = "block";
+
+        break;
+      default:
+        break;
+    }
+  }
 });
+
+//
+document
+  .getElementById("search_word_input_btn")
+  .addEventListener("click", getWordMeaning);
+
+function getWordMeaning() {
+  var enterText = document.getElementById("search_word_input").value;
+  if (enterText) {
+    let firstWord = enterText.split(" ")[0];
+    var data = {
+      method: "searchWord",
+      data: firstWord,
+    };
+    port.postMessage(data);
+  }
+}
