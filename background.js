@@ -30,6 +30,7 @@ chrome.runtime.onConnect.addListener(function (port) {
           defination: "Oops, defination not found,try some other word",
         };
       }
+      infos.english = searchText;
       param = {
         method: "wordMeaning",
         data: infos,

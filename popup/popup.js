@@ -10,10 +10,10 @@ port.onMessage.addListener(function (msg) {
   if (msg != null && msg.method != undefined) {
     switch (msg.method) {
       case "wordMeaning":
-        document.getElementById("dictionary_word_title").innerHTML =
-          msg.data.english;
         document.getElementById("dictionary_word_defination").innerHTML =
           msg.data.defination;
+        document.getElementById("dictionary_word_wylie").innerHTML =
+          msg.data.wylie;
         document.getElementById("defination_div").style.display = "block";
 
         break;
