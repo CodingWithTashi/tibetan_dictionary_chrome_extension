@@ -1,16 +1,38 @@
-#control-tibeten-dictionary {
-  background-image: url("data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width='40px' height='40px'><foreignObject width='40px' height='40px'><div xmlns='http://www.w3.org/1999/xhtml' style='width:40px;height:40px;line-height:40px;text-align:center;color:transparent;text-shadow: 0 0 yellow, 2px 4px black, -1px -1px black;font-size:35px;'>💬</div></foreignObject></svg>");
-  cursor: pointer;
-  position: absolute;
-  width: 40px; height: 40px;
-}
-#control-tibeten-dictionary::before{
-  background-color: black;
+
+
+.speech-bubble {
+  position: relative;
+  background: #4294da;
+  border-radius: .4em;
   color: white;
-  content: " tweet this! ";
-  display: block;
-  font-weight: bold;
-  margin-left: 37px; margin-top: 6px;
-  padding: 2px;
-  width: max-content; height: 20px;
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 12px solid transparent;
+  border-bottom-color: #4294da;
+  border-top: 0;
+  margin-left: -12px;
+  margin-top: -12px;
+}
+
+.share-inside {
+  background: url('https://awik.io/demo/js-selected-text/twicon.png');
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 24px 19px;
+}
+
+.share-inside a {
+  display: inline-block;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 10px;
+  padding-left: 40px;
 }

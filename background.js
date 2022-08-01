@@ -3,17 +3,34 @@ var selectedText;
 var database = null;
 let databaseName = "dictionaryDb";
 let fstore = "dictionaryTable";
-chrome.runtime.onMessage.addListener(function (request, sender) {
-  var text = request.selectedText;
-  var textMeaning;
-  /*
-textMeaning = get Meaning from dictionary
-*/
-  textMeaning = getWordMeaningFromDictionary(text);
-  chrome.tabs.sendMessage(sender.tab.id, {
-    from: "background",
-    meaning: text,
-  });
+chrome.runtime.onMessage.addListener(async function (request, sender) {
+  if (request.param != null && request.param != undefined) {
+    var respond = request.param;
+    switch (respond.method) {
+      case "searchWordFromContent":
+        var searchText = respond.data.toLowerCase();
+        var infos = await getWordMeaning(databaseName, fstore, searchText);
+        var param;
+        if (infos == null || infos == undefined) {
+          infos = {
+            english: searchText,
+            defination: "Oops, defination not found,try some other word",
+          };
+        }
+        infos.english = searchText;
+        param = {
+          method: "wordMeaningFromBackground",
+          data: infos,
+        };
+        console.log("sending data");
+        chrome.tabs.sendMessage(sender.tab.id, {
+          param: param,
+        });
+        break;
+      default:
+        break;
+    }
+  }
 });
 chrome.runtime.onConnect.addListener(function (port) {
   port.onMessage.addListener(async function (message) {

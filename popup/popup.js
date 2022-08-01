@@ -6,7 +6,6 @@ var port = chrome.runtime.connect({
 port.postMessage("Request Modified Value");
 
 port.onMessage.addListener(function (msg) {
-  console.log("Modified Value recieve" + JSON.stringify(msg));
   if (msg != null && msg.method != undefined) {
     switch (msg.method) {
       case "wordMeaning":
