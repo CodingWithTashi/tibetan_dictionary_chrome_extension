@@ -6,7 +6,10 @@ Simple Tibetan dictionary for daily use case,
 
 ### Feature
 * Search word from popup
+* Select word and get meaning
 
 ### Todo
-* Search word by selecting text
+* Enhancement
+* Alignment and layout issue
+
 ### Installation Process
