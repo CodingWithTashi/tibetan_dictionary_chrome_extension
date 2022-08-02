@@ -3,6 +3,7 @@ var selectedText;
 var database = null;
 let databaseName = "dictionaryDb";
 let fstore = "dictionaryTable";
+//event listener for content js
 chrome.runtime.onMessage.addListener(async function (request, sender) {
   if (request.param != null && request.param != undefined) {
     var respond = request.param;
@@ -23,6 +24,7 @@ chrome.runtime.onMessage.addListener(async function (request, sender) {
           data: infos,
         };
         console.log("sending data");
+        //send word meaning to content js
         chrome.tabs.sendMessage(sender.tab.id, {
           param: param,
         });
@@ -32,6 +34,7 @@ chrome.runtime.onMessage.addListener(async function (request, sender) {
     }
   }
 });
+//event listener from popup js
 chrome.runtime.onConnect.addListener(function (port) {
   port.onMessage.addListener(async function (message) {
     if (message == "Request Modified Value") {
@@ -52,6 +55,7 @@ chrome.runtime.onConnect.addListener(function (port) {
         method: "wordMeaning",
         data: infos,
       };
+      //send data back to popup js
       port.postMessage(param);
     }
   });
@@ -74,7 +78,7 @@ async function getWordMeaning(dname, sname, key) {
     };
   });
 }
-
+//on extension install listener
 chrome.runtime.onInstalled.addListener(async function (details) {
   if (details.reason == "install") {
     //call a function to handle a first install
@@ -87,7 +91,7 @@ chrome.runtime.onInstalled.addListener(async function (details) {
     //call a function to handle an update
   }
 });
-
+//import database with content
 function importIDB(dname, sname, wordArray) {
   return new Promise(function (resolve) {
     var idbOpenRequest = indexedDB.open(dname, 1);
@@ -117,48 +121,4 @@ function importIDB(dname, sname, wordArray) {
       database.close();
     };
   });
-}
-
-function getWordMeaningFromDictionary(keyword) {
-  console.log("called getWordMeaningFromDictionary");
-
-  try {
-    let transaction = database.transaction(fstore, "readonly");
-    let store = transaction.objectStore(fstore);
-    const request = store.openCursor();
-    request.onsuccess = (e) => {
-      const cursor = e.target.result;
-      if (cursor) {
-        if (cursor.value.english.toLowerCase() == keyword) {
-          console.log(cursor.value);
-        } else {
-          cursor.continue();
-        }
-      }
-    };
-    // const index = store.index("english");
-
-    // // query by indexes
-    // let query = index.get(keyword);
-
-    // // return the result object on success
-    // query.onsuccess = (event) => {
-    //   console.log("daaya");
-    //   console.log(event); // result objects
-    // };
-
-    // query.onerror = (event) => {
-    //   console.log(event.target.errorCode);
-    // };
-
-    // close the database connection
-    // transaction.oncomplete = function () {
-    //   database.close();
-    // };
-  } catch (e) {
-    console.log("addDataFunction table or data null error");
-    console.log(e);
-  }
-
-  return keyword;
 }
