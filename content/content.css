@@ -40,6 +40,7 @@ add curve shape like bubble at corner
   background-size: 24px 19px;
   padding:5px;
   max-width: 400px;
+  min-width: 200px;
   
 }
 .defination {
@@ -54,6 +55,6 @@ add curve shape like bubble at corner
 .share-inside a {
   display: inline-block;
   text-decoration: none;
-  color: #1a3aa4;
+  color: #0645AD;
   font-size: 14px;
 }
