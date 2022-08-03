@@ -1,12 +1,24 @@
-
-
+/* @font-face {
+  font-family: 'Noto Serif Tibetan';
+  font-style: normal;
+  font-weight: 400;
+  src: url('chrome-extension://__MSG_@@extension_id__/fonts/Noto Serif Tibetan.woff') format('woff');
+} */
+@font-face {
+  font-family: 'Jomolhari';
+  font-style: normal;
+  font-weight: 400;
+  src: url('chrome-extension://__MSG_@@extension_id__/fonts/Jomolhari.woff') format('woff');
+}
 .speech-bubble {
   position: relative;
-  background: #4294da;
+  background: #977124;
   border-radius: .4em;
   color: white;
 }
 
+/* 
+add curve shape like bubble at corner
 .speech-bubble:after {
   content: '';
   position: absolute;
@@ -19,20 +31,29 @@
   border-top: 0;
   margin-left: -12px;
   margin-top: -12px;
-}
+} */
 
 .share-inside {
-  background: url('https://awik.io/demo/js-selected-text/twicon.png');
+  /* background: url('https://awik.io/demo/js-selected-text/twicon.png'); */
   background-repeat: no-repeat;
   background-position: 10px center;
   background-size: 24px 19px;
+  padding:5px;
+  max-width: 400px;
+  
+}
+.defination {
+  display: block;/* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3.6em;
+  line-height: 1.8em;
 }
 
 .share-inside a {
   display: inline-block;
   text-decoration: none;
-  color: #ffffff;
+  color: #1a3aa4;
   font-size: 14px;
-  padding: 10px;
-  padding-left: 40px;
 }

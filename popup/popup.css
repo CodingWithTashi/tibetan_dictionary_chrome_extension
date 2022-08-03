@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'Noto Serif Tibetan';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Noto Serif Tibetan.woff') format('woff');
+}
+/* @font-face {
+  font-family: 'Jomolhari';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Jomolhari.woff') format('woff');
+}  */
 body {
     min-width: 600px;
     text-align: center;

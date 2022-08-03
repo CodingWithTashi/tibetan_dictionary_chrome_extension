@@ -1,5 +1,6 @@
 var positionX;
 var positionY;
+var url = "https://play.google.com/store/apps/dev?id=5910382695653514663";
 //Document mouse up event listener
 document.addEventListener("mouseup", handlerFunction, false);
 
@@ -9,21 +10,13 @@ function handlerFunction(event) {
   if (document.contains(document.getElementById("share-snippet"))) {
     document.getElementById("share-snippet").remove();
   }
-
+  var selectedText = "";
   // Check if any text was selected and text has only one word
-  if (
-    window.getSelection().toString().trim().length > 0 &&
-    window.getSelection().toString().split(" ").length == 1
-  ) {
-    // Get selected text and encode it
-    const selection = encodeURIComponent(
-      window.getSelection().toString()
-    ).replace(/[!'()*]/g, escape);
-
-    let exactText = window.getSelection().toString();
+  selectedText = window.getSelection().toString().trim();
+  if (isSelectionDataValid(selectedText) == true) {
     var param = {
       method: "searchWordFromContent",
-      data: exactText,
+      data: selectedText,
     };
     //send text to background js to get the meaning
     chrome.runtime.sendMessage({
@@ -45,6 +38,14 @@ function handlerFunction(event) {
     positionY = event.clientY + 20 + scrollTop;
   }
 }
+function isSelectionDataValid(selectedText) {
+  if (selectedText.length > 0) {
+    if (selectedText.split(" ").length < 3) {
+      return true;
+    }
+  }
+  return false;
+}
 
 //get the word meaning from background js
 chrome.runtime.onMessage.addListener(function (msg) {
@@ -55,18 +56,19 @@ chrome.runtime.onMessage.addListener(function (msg) {
     //var wylie = data.wylie;
     if (positionX != undefined && positionY != undefined) {
       // Append HTML to the body, create the "Tweet Selection" dialog
-      document.body.insertAdjacentHTML(
-        "beforeend",
-        '<div id="share-snippet" style="position: absolute; top: ' +
-          positionY +
-          "px; left: " +
-          positionX +
-          'px;"><div class="speech-bubble"><div class="share-inside"><a href="javascript:void(0);" onClick=\'window.open("' +
-          "https://www.google.com" +
-          '", "", "menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600");\'>' +
-          defination +
-          "</a></div></div></div>"
-      );
+      var htmlContent = `
+      <div id="share-snippet" style="position: absolute; top: ${positionY}px; left: ${positionX}px;">
+        <div class="speech-bubble">
+          <div class="share-inside">
+            <h5 style="font-family: 'Noto Serif Tibetan';" class="defination">${defination}</h5>
+            <p>${data.wylie}</p>
+            <a href="${url}" > More</a>
+          </div>
+        </div>
+      </div>
+
+        `;
+      document.body.insertAdjacentHTML("beforeend", htmlContent);
     }
   }
 });
