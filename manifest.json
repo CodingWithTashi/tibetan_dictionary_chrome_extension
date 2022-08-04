@@ -2,7 +2,7 @@
   "name": "Tibetan Dictionary",
   "description": "Select a word on the webpage and open popup to look up in the dictionary",
   "manifest_version":3,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "background":{
       "service_worker":"background.js"
   },
