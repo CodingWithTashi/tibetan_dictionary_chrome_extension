@@ -12,22 +12,19 @@ chrome.runtime.onMessage.addListener(async function (request, sender) {
         var searchText = respond.data.toLowerCase();
         var infos = await getWordMeaning(databaseName, fstore, searchText);
         var param;
-        if (infos == null || infos == undefined) {
-          infos = {
-            english: searchText,
-            defination: "Oops, defination not found,try some other word",
+        if (infos != null && infos != undefined) {
+          infos.english = searchText;
+          param = {
+            method: "wordMeaningFromBackground",
+            data: infos,
           };
+          console.log("sending data");
+          //send word meaning to content js
+          chrome.tabs.sendMessage(sender.tab.id, {
+            param: param,
+          });
         }
-        infos.english = searchText;
-        param = {
-          method: "wordMeaningFromBackground",
-          data: infos,
-        };
-        console.log("sending data");
-        //send word meaning to content js
-        chrome.tabs.sendMessage(sender.tab.id, {
-          param: param,
-        });
+
         break;
       default:
         break;

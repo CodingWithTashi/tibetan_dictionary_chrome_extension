@@ -19,7 +19,7 @@ function handlerFunction(event) {
       data: selectedText,
     };
     //send text to background js to get the meaning
-    chrome.runtime.sendMessage({
+    chrome.runtime?.sendMessage({
       param,
     });
 
@@ -60,16 +60,16 @@ chrome.runtime.onMessage.addListener(function (msg) {
       <div id="share-snippet" style="position: absolute; top: ${positionY}px; left: ${positionX}px;">
         <div class="speech-bubble">
           <div class="share-inside">
-            <p style="font-family: 'Noto Serif Tibetan';font-size: 18px;" class="defination">${defination}</p>
+            <p style="font-family: 'Noto Serif Tibetan';font-size: 1.5rem;" class="defination">${defination}</p>
             <p>${data.wylie}</p>
             <div style="display: inline-block; text-align: right; width: 100%">
-            <a href="${url}" > More..</a>
             </div>
           </div>
         </div>
       </div>
 
         `;
+      //<a href="${url}" > More..</a>
       document.body.insertAdjacentHTML("beforeend", htmlContent);
     }
   }

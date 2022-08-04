@@ -38,7 +38,7 @@ add curve shape like bubble at corner
   background-repeat: no-repeat;
   background-position: 10px center;
   background-size: 24px 19px;
-  padding:5px;
+  margin:10px;
   max-width: 400px;
   min-width: 200px;
   
