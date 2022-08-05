@@ -1,6 +1,8 @@
-# tibetan_dictionary_chrome_extension
-Tibetan Dictionary Chrome Extension
-Simple Tibetan dictionary for daily use case,
+# Tibetan Dictionary Chrome Extension   
+Simple Tibetan dictionary extension for daily use case
+### Download/install extension
+[![](https://github.com/CodingWithTashi/tibetan_dictionary_chrome_extension/blob/main/assets/icon128.png?raw=true)](https://chrome.google.com/webstore/detail/tibetan-dictionry/adfffbhmkignepdggmlpojjplehfcnma)
+
 ### Demo
 | Pop up | Content  |
 | :---:   | :-: |
