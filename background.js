@@ -119,3 +119,21 @@ function importIDB(dname, sname, wordArray) {
     };
   });
 }
+
+//create context menu option
+chrome.contextMenus.removeAll(function () {
+  chrome.contextMenus.create({
+    id: "1",
+    title: "Install Dictionary in mobile",
+    contexts: ["selection"], // ContextType
+  });
+});
+
+searchTerapeak = function (word) {
+  var query = word.selectionText;
+  chrome.tabs.create({
+    url: "https://play.google.com/store/apps/details?id=com.kharagedition.tibetandictionary",
+  });
+};
+
+chrome.contextMenus.onClicked.addListener(searchTerapeak);
